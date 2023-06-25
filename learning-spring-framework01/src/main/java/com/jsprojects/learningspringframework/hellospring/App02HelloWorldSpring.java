@@ -4,13 +4,15 @@ import java.util.Arrays;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.Configuration;
 
-public class App02HelloWorldSpring {
+@Configuration
+public class App02HelloWorldSpring{
 
 	public static void main(String[] args) {
 		
 		//the try with resources is used due to resource leak
-	
+
 		try (var context = new AnnotationConfigApplicationContext(HelloworldConfiguration.class)) //resource
 		{
 			//using bean class to retrieve the objects
@@ -24,7 +26,7 @@ public class App02HelloWorldSpring {
 			//You can use also the class name context
 			System.out.println(context.getBean(Address.class));
 			
-     //Listing all the Beans managed by Spring Container
+            //Listing all the Beans managed by Spring Container
 			System.out.println("The beans are as follows:");
 			Arrays.stream(context.getBeanDefinitionNames()).forEach(System.out::println);
 		} catch (BeansException e) {
@@ -32,5 +34,4 @@ public class App02HelloWorldSpring {
 			e.printStackTrace();
 		}
 	}
-
 }

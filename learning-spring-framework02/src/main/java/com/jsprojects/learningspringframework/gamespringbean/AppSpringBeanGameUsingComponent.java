@@ -1,8 +1,6 @@
 package com.jsprojects.learningspringframework.gamespringbean;
 
-import com.jsprojects.learningspringframework.game.GameInterfaceConsole;
-import com.jsprojects.learningspringframework.game.GameRunner;
-import com.jsprojects.learningspringframework.game.PacManGame;
+import com.jsprojects.learningspringframework.game.*;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -29,7 +27,8 @@ public class AppSpringBeanGameUsingComponent {
 
 		var context = new AnnotationConfigApplicationContext(AppSpringBeanGameUsingComponent.class);
 
-		//pacman
+		//When using @ Componet on all the beans sharing a given bean
+		//Use @Primary or @Qualifier("Bean name") in the bean to be given priority to be retrieved
 		context.getBean(GameInterfaceConsole.class).down();
 
 		//runner class
