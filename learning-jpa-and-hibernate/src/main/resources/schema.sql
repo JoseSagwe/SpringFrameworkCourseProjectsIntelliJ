@@ -6,3 +6,12 @@ create table course
     primary key (id)
 
 );
+
+create table phone
+(
+    id bigint not null,
+    name varchar(255) not null,
+    price bigint not null,
+    primary key (id)
+
+);

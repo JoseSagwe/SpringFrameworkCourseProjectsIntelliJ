@@ -1,11 +1,9 @@
 package com.springboot.jpahibernate.learningjpaandhibernate.jdbc;
 
 
-import com.springboot.jpahibernate.learningjpaandhibernate.Course.CourseSpecificationsClass;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -40,7 +38,7 @@ public class ClassCommunicatingToDatabaseJdbcRepository {
 
 
 
-    public void insert(CourseSpecificationsClass course){
+    public void insert(CourseSpecificationClass course){
         jdbcTemplate.update(INSERT_QUERY, course.getId(), course.getName(),course.getAuthor());
     }
 
@@ -48,9 +46,9 @@ public class ClassCommunicatingToDatabaseJdbcRepository {
         jdbcTemplate.update(DELETE_QUERY,id);
     }
 
-    public CourseSpecificationsClass findById(long id){
+    public CourseSpecificationClass findById(long id){
         //Result => Bean => Row Mapper
-        return jdbcTemplate.queryForObject(SELECT_QUERY, new BeanPropertyRowMapper<>(CourseSpecificationsClass.class), id);
+        return jdbcTemplate.queryForObject(SELECT_QUERY, new BeanPropertyRowMapper<>(CourseSpecificationClass.class), id);
     }
 
 
