@@ -15,3 +15,13 @@ create table phone
     primary key (id)
 
 );
+
+
+create table laptop
+(
+    id bigint not null,
+    name varchar(255) not null,
+    price bigint not null,
+    primary key (id)
+
+);
