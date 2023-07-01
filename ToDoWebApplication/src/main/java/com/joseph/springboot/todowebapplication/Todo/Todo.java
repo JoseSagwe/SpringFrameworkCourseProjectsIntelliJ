@@ -4,34 +4,49 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.Size;
-import org.springframework.stereotype.Component;
+
 
 import java.time.LocalDate;
 
-@Entity
-public class ToDo {
 
-    public ToDo() {
+//Database (MySQL)
+//Static List of todos => Database (H2, MySQL)
+
+//JPA
+// Bean -> Database Table
+
+//Database (MySQL)
+//Static List of todos => Database (H2, MySQL)
+
+//JPA
+// Bean -> Database Table
+
+@Entity
+public class Todo {
+
+    public Todo() {
+
     }
 
-    @Id
-    @GeneratedValue
-    private int id;
-    private  String username;
-
-    @Size(min=2, message="Enter at least 10 characters")
-    private String description;
-    private LocalDate targetDate;
-    private Boolean done;
-
-
-    public ToDo(int id, String username, String description, LocalDate targetDate, Boolean done) {
+    public Todo(int id, String username, String description, LocalDate targetDate, boolean done) {
+        super();
         this.id = id;
         this.username = username;
         this.description = description;
         this.targetDate = targetDate;
         this.done = done;
     }
+
+    @Id
+    @GeneratedValue
+    private int id;
+
+    private String username;
+
+    @Size(min=10, message="Enter atleast 10 characters")
+    private String description;
+    private LocalDate targetDate;
+    private boolean done;
 
     public int getId() {
         return id;
@@ -65,22 +80,18 @@ public class ToDo {
         this.targetDate = targetDate;
     }
 
-    public Boolean getDone() {
+    public boolean isDone() {
         return done;
     }
 
-    public void setDone(Boolean done) {
+    public void setDone(boolean done) {
         this.done = done;
     }
 
     @Override
     public String toString() {
-        return "ToDo{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", description='" + description + '\'' +
-                ", targetDate=" + targetDate +
-                ", done=" + done +
-                '}';
+        return "Todo [id=" + id + ", username=" + username + ", description=" + description + ", targetDate="
+                + targetDate + ", done=" + done + "]";
     }
+
 }
