@@ -10,6 +10,10 @@ import java.time.LocalDate;
 
 @Entity
 public class ToDo {
+
+    public ToDo() {
+    }
+
     @Id
     @GeneratedValue
     private int id;
@@ -20,8 +24,6 @@ public class ToDo {
     private LocalDate targetDate;
     private Boolean done;
 
-    public ToDo() {
-    }
 
     public ToDo(int id, String username, String description, LocalDate targetDate, Boolean done) {
         this.id = id;
