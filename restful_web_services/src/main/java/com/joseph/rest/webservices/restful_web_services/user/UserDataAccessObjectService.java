@@ -17,9 +17,9 @@ public class UserDataAccessObjectService {
     private  static List<User> users = new ArrayList<>();
 
     static {
-        users.add(new User(++usersCount, "Joseph", LocalDate.now().minusYears(30) ));
-        users.add(new User(++usersCount, "Sagwe", LocalDate.now().minusYears(32) ));
-        users.add(new User(++usersCount, "Birisio", LocalDate.now().minusYears(20) ));
+        users.add(new User(++usersCount, "Joseph", LocalDate.now().minusYears(30), "@josephsagwe" ));
+        users.add(new User(++usersCount, "Sagwe", LocalDate.now().minusYears(32),"@josephsagwe"));
+        users.add(new User(++usersCount, "Birisio", LocalDate.now().minusYears(20), "@josephsagwe" ));
     }
 
 
@@ -39,4 +39,8 @@ public class UserDataAccessObjectService {
         return user;
     }
 
+    public void deleteById(int id) {
+        Predicate<? super User> predicate = user -> user.getId().equals(id);
+        users.removeIf(predicate);
+    }
 }

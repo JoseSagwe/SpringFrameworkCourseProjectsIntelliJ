@@ -1,5 +1,6 @@
 package com.joseph.rest.webservices.restful_web_services.user;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -36,6 +37,11 @@ public class UserResource {
 
     }
 
+    @DeleteMapping("/users/{id}")
+    public void deleteUser(@PathVariable int id){
+        service.deleteById(id);
+    }
+
     //POST /users
 //    @PostMapping("/users")
 //    public void addUser(@RequestBody User user){
@@ -47,7 +53,7 @@ public class UserResource {
     //POST /users
 
     @PostMapping("/users")
-    public ResponseEntity<User> addUserWithResponse(@RequestBody User user){
+    public ResponseEntity<User> addUserWithResponse(@Valid @RequestBody User user){
 
         User savedUser = service.saveUser(user);
 
