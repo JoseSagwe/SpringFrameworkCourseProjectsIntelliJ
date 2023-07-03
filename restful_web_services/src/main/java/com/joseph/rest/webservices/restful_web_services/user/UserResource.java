@@ -1,5 +1,6 @@
 package com.joseph.rest.webservices.restful_web_services.user;
 
+import com.joseph.rest.webservices.restful_web_services.exception.UserNotFoundException;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

@@ -21,5 +21,10 @@ public class HelloController {
     public String variable(@PathVariable String name, @PathVariable Long age){
         return "My name is " + name + "and i am " + age +" years old";
     }
+
+    @GetMapping (path = "hello-internationalization") //URL to REST APA
+    public String helloInternationalization(){
+        return "Hello World";
+    }
 }
 
