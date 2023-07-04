@@ -1,13 +1,19 @@
 package com.joseph.rest.webservices.restful_web_services.user;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
 
+@Entity
 public class User {
+    @Id
+    @GeneratedValue
     private Integer id;
     @Size(min=10 , message= "Name should have at least 10 characters")
     @JsonProperty("user_name")
@@ -17,6 +23,10 @@ public class User {
     private LocalDate birthDate;
     @Email
     private String email;
+
+    public User() {
+
+    }
 
     public String getEmail() {
         return email;
