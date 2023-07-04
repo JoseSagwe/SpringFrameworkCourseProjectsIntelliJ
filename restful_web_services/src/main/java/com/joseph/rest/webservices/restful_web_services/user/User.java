@@ -10,7 +10,7 @@ import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
 
-@Entity
+@Entity(name="user_details")
 public class User {
     @Id
     @GeneratedValue
