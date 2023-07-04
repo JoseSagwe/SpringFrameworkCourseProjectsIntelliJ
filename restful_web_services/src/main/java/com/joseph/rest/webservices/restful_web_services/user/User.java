@@ -1,5 +1,6 @@
 package com.joseph.rest.webservices.restful_web_services.user;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
@@ -9,8 +10,10 @@ import java.time.LocalDate;
 public class User {
     private Integer id;
     @Size(min=10 , message= "Name should have at least 10 characters")
+    @JsonProperty("user_name")
     private String name;
     @Past (message = "The Birth Date should be in the past")
+    @JsonProperty("birth_date")
     private LocalDate birthDate;
     @Email
     private String email;
