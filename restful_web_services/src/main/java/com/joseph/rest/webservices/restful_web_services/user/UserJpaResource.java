@@ -93,7 +93,7 @@ public class UserJpaResource {
         return entityModel;
     }
 
-    //Getting post for a specific user
+    //Getting post for a specific user by using GETMapping
     @GetMapping("jpa/users/{id}/posts")
     public List<Post> retrieveUserPosts(@PathVariable int id){
         Optional<User> user = repository.findById(id);

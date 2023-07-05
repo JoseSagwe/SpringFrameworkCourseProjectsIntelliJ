@@ -37,10 +37,8 @@ public class HelloController {
         Locale locale = LocaleContextHolder.getLocale();
         return messageSource.getMessage("good.morning.message", null, "Default Message", locale );
 
-        //return "Hello World V2";
 
-        //1:
-        //2:
+
 //		- Example: `en` - English (Good Morning)
 //		- Example: `nl` - Dutch (Goedemorgen)
 //		- Example: `fr` - French (Bonjour)
