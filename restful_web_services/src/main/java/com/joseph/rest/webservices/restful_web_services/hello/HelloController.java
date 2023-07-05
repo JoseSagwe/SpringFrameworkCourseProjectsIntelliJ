@@ -18,7 +18,7 @@ public class HelloController {
     @GetMapping (path = "/") //URL to REST APA
 //    @ResponseBody
     public String hello(){
-        return "Hello Developer Joseph Sagwe";
+        return "Hello Developer Joseph Sagwe Birisio";
     }
 
     @GetMapping("/hello-bean/{name}")
@@ -29,14 +29,13 @@ public class HelloController {
     //pathVariables. used to extract values from the URL path
     @GetMapping("/user/{name}/{age}")
     public String variable(@PathVariable String name, @PathVariable Long age){
-        return "My name is " + name + "and i am " + age +" years old";
+        return "My Name is " + name + "and i am " + age +" years old";
     }
 
     @GetMapping (path = "hello-internationalization") //URL to REST APA
     public String helloInternationalization(){
         Locale locale = LocaleContextHolder.getLocale();
         return messageSource.getMessage("good.morning.message", null, "Default Message", locale );
-
 
 
 //		- Example: `en` - English (Good Morning)
