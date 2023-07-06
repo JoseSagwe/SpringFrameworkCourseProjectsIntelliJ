@@ -53,15 +53,6 @@ public class UserJpaResource {
         repository.deleteById(id);
     }
 
-
-
-    //POST /users
-//    @PostMapping("/users")
-//    public void addUser(@RequestBody User user){
-//        service.saveUser(user);
-//    }
-
-
     //Adding Response type e.g. 201 and location e.g. localhost:8080/users/5
     //POST /users
 
