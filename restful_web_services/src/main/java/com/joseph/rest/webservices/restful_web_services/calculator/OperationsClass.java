@@ -5,7 +5,14 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class OperationsClass {
-    public int addition(int a, int b){
 
+    private int a;
+    private int b;
+    public double addition(int a, int b){
+        return a + b;
+    }
+
+    public int multiplication(int a, int b){
+        return a*b;
     }
 }
