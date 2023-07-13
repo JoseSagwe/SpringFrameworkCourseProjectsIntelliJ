@@ -14,7 +14,7 @@ public class RestfulWebServicesApplication {
 
 
     //Cross Origin Requests
-    //Cors Configuration .....override method
+    //Cors Configuration ..... override method
     @Bean
     public WebMvcConfigurer corsConfigure(){
         return new WebMvcConfigurer() {
