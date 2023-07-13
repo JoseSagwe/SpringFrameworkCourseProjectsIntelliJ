@@ -15,7 +15,7 @@ public class HelloController {
         this.messageSource = messageSource;
     }
 
-    @GetMapping (path = "/") //URL to REST APA
+    @GetMapping (path = "/hello") //URL to REST APA
 //    @ResponseBody
     public String hello(){
         return "Hello Developer Joseph Sagwe Birisio";
