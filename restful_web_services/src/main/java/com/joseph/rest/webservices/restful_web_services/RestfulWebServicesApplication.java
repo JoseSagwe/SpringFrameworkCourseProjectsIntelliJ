@@ -12,19 +12,17 @@ public class RestfulWebServicesApplication {
         SpringApplication.run(RestfulWebServicesApplication.class, args);
     }
 
-
-    //Cross Origin Requests
-    //Cors Configuration ..... override method
     @Bean
-    public WebMvcConfigurer corsConfigure(){
+    public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
+                        .allowedOrigins("http://localhost:3000")
                         .allowedMethods("*")
-                        .allowedOrigins("http://localhost:3000");
+                        .allowedHeaders("*")
+                        .allowCredentials(true);
             }
         };
     }
-
 }

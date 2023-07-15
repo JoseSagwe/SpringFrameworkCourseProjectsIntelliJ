@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Locale;
 
 @RestController    //This is a controller that will expose a rest API
+//@CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
 public class HelloController {
 
    private MessageSource messageSource;
