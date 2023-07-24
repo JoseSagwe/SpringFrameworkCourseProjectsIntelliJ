@@ -20,7 +20,3 @@ public class BusinessImplementation  {
 
 }
 
-interface DataService {
-    int[] retrieveAllData();
-
-}
