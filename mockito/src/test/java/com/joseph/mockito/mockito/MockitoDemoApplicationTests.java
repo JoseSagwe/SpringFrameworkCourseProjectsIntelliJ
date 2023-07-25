@@ -10,7 +10,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest
 class MockitoDemoApplicationTests {
 
-
 	@Test
 	void findTheGreatestFromAllData_basicScenario() {
 		DataServiceStub DataServiceStub =new DataServiceStub();
@@ -21,6 +20,8 @@ class MockitoDemoApplicationTests {
 
 }
 
+
+//Creating a stub
 class DataServiceStub implements DataService {
 
 	@Override
