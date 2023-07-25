@@ -1,9 +1,9 @@
-package com.joseph.mockito.mockito;
+package com.joseph.mockito.tests.mocks;
 
-import com.joseph.mockito.mockito.business.BusinessImplementation;
+import com.joseph.mockito.tests.business.BusinessImplementation;
 
 
-import com.joseph.mockito.mockito.business.DataService;
+import com.joseph.mockito.tests.business.DataService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -11,8 +11,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import javax.xml.crypto.Data;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;

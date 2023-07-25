@@ -1,4 +1,4 @@
-package com.joseph.mockito.mockito.business;
+package com.joseph.mockito.tests.business;
 
 public class BusinessImplementation  {
     private DataService dataService;

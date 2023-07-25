@@ -1,7 +1,7 @@
-package com.joseph.mockito.mockito;
+package com.joseph.mockito.tests.stubs;
 
-import com.joseph.mockito.mockito.business.BusinessImplementation;
-import com.joseph.mockito.mockito.business.DataService;
+import com.joseph.mockito.tests.business.BusinessImplementation;
+import com.joseph.mockito.tests.business.DataService;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 

@@ -1,4 +1,4 @@
-package com.joseph.mockito.mockito;
+package com.joseph.mockito.tests;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
