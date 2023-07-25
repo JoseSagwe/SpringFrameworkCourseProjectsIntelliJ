@@ -9,6 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+
 public class ListTest {
     @Test
     void simpleTest() {
@@ -21,6 +22,7 @@ public class ListTest {
         assertEquals(3, listMock.size());
     }
 
+
     @Test
     void multipleReturns() {
         List listMock = mock(List.class);
@@ -32,6 +34,7 @@ public class ListTest {
         assertEquals(2, listMock.size());
     }
 
+
     @Test
     void specificParameters() {
         List listMock = mock(List.class);
@@ -40,6 +43,7 @@ public class ListTest {
         assertEquals("SomeString", listMock.get(0));
         assertEquals(null, listMock.get(1));
     }
+
 
     @Test
     void genericParameters() {
