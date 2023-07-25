@@ -11,7 +11,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
-
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -34,14 +33,12 @@ class BusinessImplementationMockTest {
         Assertions.assertEquals(56, result);
     }
 
-
     @Test
     void findTheGreatestFromAllData_EmptyArray() {
         when(dataServiceMock.retrieveAllData()).thenReturn(new int[] {});
         int result = business.findTheGreatestFromAllData();
         Assertions.assertEquals(Integer.MIN_VALUE, result);
     }
-
 
 
     @Test
