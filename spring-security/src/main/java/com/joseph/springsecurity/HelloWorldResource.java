@@ -8,6 +8,6 @@ public class HelloWorldResource {
 
     @GetMapping("hello")
     public String helloWorld(){
-        return "Developer Joseph Sagwe Birisio";
+        return "Software Developer Joseph Sagwe Birisio";
     }
 }
