@@ -1,5 +1,10 @@
 package com.joseph.springsecurity.jwt;
 
+import com.nimbusds.jose.JOSEException;
+import com.nimbusds.jose.jwk.JWKSet;
+import com.nimbusds.jose.jwk.RSAKey;
+import com.nimbusds.jose.jwk.source.JWKSource;
+import com.nimbusds.jose.proc.SecurityContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
@@ -9,10 +14,19 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.oauth2.jwt.JwtDecoder;
+import org.springframework.security.oauth2.jwt.JwtEncoder;
+import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
+import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 import javax.sql.DataSource;
+
+import java.security.KeyPair;
+import java.security.KeyPairGenerator;
+import java.security.interfaces.RSAPublicKey;
+import java.util.UUID;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
@@ -83,6 +97,7 @@ public class JwtSecurityConfiguration {
         return new BCryptPasswordEncoder();
     }
 
+            // 1. Creating a  Key Pair
     @Bean
     public KeyPair keyPair() {
         try {
@@ -94,6 +109,8 @@ public class JwtSecurityConfiguration {
         }
     }
 
+
+    // 2. Creating an RSA kEY
     @Bean
     public RSAKey rsaKey(KeyPair keyPair) {
 
@@ -104,6 +121,8 @@ public class JwtSecurityConfiguration {
                 .build();
     }
 
+
+            //  3. JWK JWKSource using the RSA Key
     @Bean
     public JWKSource<SecurityContext> jwkSource(RSAKey rsaKey) {
         var jwkSet = new JWKSet(rsaKey);
@@ -112,6 +131,8 @@ public class JwtSecurityConfiguration {
 
     }
 
+
+            // 4. Creating JWKSource for decoding
     @Bean
     public JwtDecoder jwtDecoder(RSAKey rsaKey) throws JOSEException {
         return NimbusJwtDecoder
