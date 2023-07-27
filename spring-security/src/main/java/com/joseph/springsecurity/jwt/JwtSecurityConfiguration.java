@@ -18,18 +18,15 @@ import static org.springframework.security.config.Customizer.withDefaults;
 
 //@Configuration
 public class JwtSecurityConfiguration {
-
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
-//        Authorizing Http Requests
-
         http.authorizeHttpRequests(
                 auth -> {
-                    auth.anyRequest().authenticated();
+                    auth
+                            .requestMatchers("/authenticate").permitAll()
+                            .anyRequest().authenticated();
                 });
-
-//        Disabling Session by making itr stateless
 
         http.sessionManagement(
                 session ->
@@ -37,43 +34,18 @@ public class JwtSecurityConfiguration {
                                 SessionCreationPolicy.STATELESS)
         );
 
-        //Disabling Form Login
-
-        //http.formLogin();
-
-        //Enabling Basic Auth Pop up
         http.httpBasic(withDefaults());
-
-        //Disabling CSRF
 
         http.csrf(csrf -> csrf.disable());
 
-        //Enable html frames that is used in H2 database(disabled by spring security)
+        http.headers(headers -> headers.frameOptions(frameOptionsConfig-> frameOptionsConfig.disable()));
 
-        http.headers().frameOptions().sameOrigin();
+        http.oauth2ResourceServer((oauth2) -> oauth2.jwt(withDefaults()));
+
 
         return http.build();
     }
 
-//    @Bean
-//    public UserDetailsService userDetailService() {
-//
-//        var user = User.withUsername("joseph")
-//                .password("{noop}1234")
-//                .roles("USER")
-//                .build();
-//
-//
-//        var admin = User.withUsername("admin")
-//                .password("{noop}1234")
-//                .roles("ADMIN")
-//                .build();
-//
-//        return new InMemoryUserDetailsManager(user, admin);
-//    }
-
-
-//    To get database schema ready for data population
     @Bean
     public DataSource dataSource() {
         return new EmbeddedDatabaseBuilder()
@@ -86,25 +58,24 @@ public class JwtSecurityConfiguration {
     public UserDetailsService userDetailService(DataSource dataSource) {
 
         var user = User.withUsername("joseph")
-//                .password("{noop}1234")
+                //.password("{noop}dummy")
                 .password("1234")
                 .passwordEncoder(str -> passwordEncoder().encode(str))
                 .roles("USER")
                 .build();
 
-
         var admin = User.withUsername("admin")
-//                .password("{noop}1234")
+                //.password("{noop}dummy")
                 .password("1234")
                 .passwordEncoder(str -> passwordEncoder().encode(str))
                 .roles("ADMIN", "USER")
                 .build();
 
-      var JdbcUserDetailsManager =  new JdbcUserDetailsManager(dataSource);
-        JdbcUserDetailsManager.createUser(user);
-        JdbcUserDetailsManager.createUser(admin);
+        var jdbcUserDetailsManager = new JdbcUserDetailsManager(dataSource);
+        jdbcUserDetailsManager.createUser(user);
+        jdbcUserDetailsManager.createUser(admin);
 
-        return JdbcUserDetailsManager;
+        return jdbcUserDetailsManager;
     }
 
     @Bean
@@ -112,48 +83,48 @@ public class JwtSecurityConfiguration {
         return new BCryptPasswordEncoder();
     }
 
+    @Bean
+    public KeyPair keyPair() {
+        try {
+            var keyPairGenerator = KeyPairGenerator.getInstance("RSA");
+            keyPairGenerator.initialize(2048);
+            return keyPairGenerator.generateKeyPair();
+        } catch (Exception ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+
+    @Bean
+    public RSAKey rsaKey(KeyPair keyPair) {
+
+        return new RSAKey
+                .Builder((RSAPublicKey)keyPair.getPublic())
+                .privateKey(keyPair.getPrivate())
+                .keyID(UUID.randomUUID().toString())
+                .build();
+    }
+
+    @Bean
+    public JWKSource<SecurityContext> jwkSource(RSAKey rsaKey) {
+        var jwkSet = new JWKSet(rsaKey);
+
+        return (jwkSelector, context) ->  jwkSelector.select(jwkSet);
+
+    }
+
+    @Bean
+    public JwtDecoder jwtDecoder(RSAKey rsaKey) throws JOSEException {
+        return NimbusJwtDecoder
+                .withPublicKey(rsaKey.toRSAPublicKey())
+                .build();
+
+    }
+
+    @Bean
+    public JwtEncoder jwtEncoder(JWKSource<SecurityContext> jwkSource) {
+        return new NimbusJwtEncoder(jwkSource);
+    }
 }
 
 
-
-
-
-//Using Enum in the code
-//
-//@Configuration
-//@EnableWebSecurity
-//public class SecurityConfig extends WebSecurityConfigurerAdapter {
-//
-//    public enum UserRole {
-//        USER,
-//        ADMIN
-//    }
-//
-//    @Bean
-//    public UserDetailsService userDetailsService() {
-//        UserDetails user = User.withUsername("user")
-//                .password("{noop}1234")
-//                .roles(UserRole.USER.name())
-//                .build();
-//
-//        UserDetails admin = User.withUsername("admin")
-//                .password("{noop}1234")
-//                .roles(UserRole.ADMIN.name())
-//                .build();
-//
-//        return new InMemoryUserDetailsManager(user, admin);
-//    }
-//
-//    @Override
-//    protected void configure(HttpSecurity http) throws Exception {
-//        http
-//                .authorizeRequests()
-//                .antMatchers("/admin/**").hasRole(UserRole.ADMIN.name())
-//                .antMatchers("/**").hasRole(UserRole.USER.name())
-//                .and()
-//                .formLogin()
-//                .and()
-//                .httpBasic();
-//    }
-//}
 
