@@ -1,0 +1,38 @@
+package com.joseph.springsecurity.jwt;
+
+@RestController
+public class JwtAuthenticationResource {
+
+    private JwtEncoder jwtEncoder;
+
+    public JwtAuthenticationResource(JwtEncoder jwtEncoder) {
+        this.jwtEncoder = jwtEncoder;
+    }
+
+    @PostMapping("/authenticate")
+    public JwtRespose authenticate(Authentication authentication) {
+        return new JwtRespose(createToken(authentication));
+    }
+
+    private String createToken(Authentication authentication) {
+        var claims = JwtClaimsSet.builder()
+                .issuer("self")
+                .issuedAt(Instant.now())
+                .expiresAt(Instant.now().plusSeconds(60 * 30))
+                .subject(authentication.getName())
+                .claim("scope", createScope(authentication))
+                .build();
+
+        return jwtEncoder.encode(JwtEncoderParameters.from(claims))
+                .getTokenValue();
+    }
+
+    private String createScope(Authentication authentication) {
+        return authentication.getAuthorities().stream()
+                .map(a -> a.getAuthority())
+                .collect(Collectors.joining(" "));
+    }
+
+}
+
+record JwtRespose(String token) {}

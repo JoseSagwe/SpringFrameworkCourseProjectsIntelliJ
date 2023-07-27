@@ -141,6 +141,7 @@ public class JwtSecurityConfiguration {
 
     }
 
+    // Creating Encoder
     @Bean
     public JwtEncoder jwtEncoder(JWKSource<SecurityContext> jwkSource) {
         return new NimbusJwtEncoder(jwkSource);
