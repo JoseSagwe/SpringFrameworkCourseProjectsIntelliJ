@@ -19,6 +19,8 @@ public class OauthSecurityConfiguration {
 
         //http.formLogin();
         //http.httpBasic();
+
+        //To authorize using Oauth and access user credentials from Google
         http.oauth2Login(Customizer.withDefaults());
         return http.build();
     }
