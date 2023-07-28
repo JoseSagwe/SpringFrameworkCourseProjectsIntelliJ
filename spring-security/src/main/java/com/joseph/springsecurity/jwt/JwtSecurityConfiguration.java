@@ -1,14 +1,18 @@
 package com.joseph.springsecurity.jwt;
 
-import com.nimbusds.jose.JOSEException;
-import com.nimbusds.jose.jwk.JWKSet;
-import com.nimbusds.jose.jwk.RSAKey;
-import com.nimbusds.jose.jwk.source.JWKSource;
-import com.nimbusds.jose.proc.SecurityContext;
+import java.security.KeyPair;
+import java.security.KeyPairGenerator;
+import java.security.interfaces.RSAPublicKey;
+import java.util.UUID;
+
+import javax.sql.DataSource;
+
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configurers.oauth2.server.resource.OAuth2ResourceServerConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -21,25 +25,24 @@ import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
-import javax.sql.DataSource;
-
-import java.security.KeyPair;
-import java.security.KeyPairGenerator;
-import java.security.interfaces.RSAPublicKey;
-import java.util.UUID;
+import com.nimbusds.jose.JOSEException;
+import com.nimbusds.jose.jwk.JWKSet;
+import com.nimbusds.jose.jwk.RSAKey;
+import com.nimbusds.jose.jwk.source.JWKSource;
+import com.nimbusds.jose.proc.SecurityContext;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
-//@Configuration
+
+@Configuration
 public class JwtSecurityConfiguration {
+
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http.authorizeHttpRequests(
                 auth -> {
-                    auth
-                            .requestMatchers("/authenticate").permitAll()
-                            .anyRequest().authenticated();
+                    auth.anyRequest().authenticated();
                 });
 
         http.sessionManagement(
@@ -72,14 +75,14 @@ public class JwtSecurityConfiguration {
     public UserDetailsService userDetailService(DataSource dataSource) {
 
         var user = User.withUsername("joseph")
-                //.password("{noop}dummy")
+                //.password("{noop}1234")
                 .password("1234")
                 .passwordEncoder(str -> passwordEncoder().encode(str))
                 .roles("USER")
                 .build();
 
         var admin = User.withUsername("admin")
-                //.password("{noop}dummy")
+                //.password("{noop}1234")
                 .password("1234")
                 .passwordEncoder(str -> passwordEncoder().encode(str))
                 .roles("ADMIN", "USER")
@@ -97,7 +100,6 @@ public class JwtSecurityConfiguration {
         return new BCryptPasswordEncoder();
     }
 
-            // 1. Creating a  Key Pair
     @Bean
     public KeyPair keyPair() {
         try {
@@ -109,8 +111,6 @@ public class JwtSecurityConfiguration {
         }
     }
 
-
-    // 2. Creating an RSA kEY
     @Bean
     public RSAKey rsaKey(KeyPair keyPair) {
 
@@ -121,8 +121,6 @@ public class JwtSecurityConfiguration {
                 .build();
     }
 
-
-            //  3. JWK JWKSource using the RSA Key
     @Bean
     public JWKSource<SecurityContext> jwkSource(RSAKey rsaKey) {
         var jwkSet = new JWKSet(rsaKey);
@@ -131,8 +129,6 @@ public class JwtSecurityConfiguration {
 
     }
 
-
-            // 4. Creating JWKSource for decoding
     @Bean
     public JwtDecoder jwtDecoder(RSAKey rsaKey) throws JOSEException {
         return NimbusJwtDecoder
@@ -141,12 +137,8 @@ public class JwtSecurityConfiguration {
 
     }
 
-    // Creating Encoder
     @Bean
     public JwtEncoder jwtEncoder(JWKSource<SecurityContext> jwkSource) {
         return new NimbusJwtEncoder(jwkSource);
     }
 }
-
-
-

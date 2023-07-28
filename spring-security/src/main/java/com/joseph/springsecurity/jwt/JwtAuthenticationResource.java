@@ -1,5 +1,15 @@
 package com.joseph.springsecurity.jwt;
 
+import java.time.Instant;
+import java.util.stream.Collectors;
+
+import org.springframework.security.core.Authentication;
+import org.springframework.security.oauth2.jwt.JwtEncoder;
+import org.springframework.security.oauth2.jwt.JwtEncoderParameters;
+import org.springframework.security.oauth2.jwt.JwtClaimsSet;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 @RestController
 public class JwtAuthenticationResource {
 
@@ -10,8 +20,8 @@ public class JwtAuthenticationResource {
     }
 
     @PostMapping("/authenticate")
-    public JwtRespose authenticate(Authentication authentication) {
-        return new JwtRespose(createToken(authentication));
+    public JwtResponse authenticate(Authentication authentication) {
+        return new JwtResponse(createToken(authentication));
     }
 
     private String createToken(Authentication authentication) {
@@ -35,4 +45,4 @@ public class JwtAuthenticationResource {
 
 }
 
-record JwtRespose(String token) {}
+record JwtResponse(String token) {}
