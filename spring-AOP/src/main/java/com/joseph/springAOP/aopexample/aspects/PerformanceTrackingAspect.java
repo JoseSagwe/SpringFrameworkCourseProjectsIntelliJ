@@ -15,6 +15,7 @@ public class PerformanceTrackingAspect {
 
     @Around("execution(* com.joseph.springAOP.aopexample.*.*.*(..))")
     public Object findExecutionTime(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
+
         //Start a timer
         long startTimeMillis = System.currentTimeMillis();
 

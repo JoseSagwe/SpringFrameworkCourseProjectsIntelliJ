@@ -2,6 +2,7 @@ package com.joseph.springAOP.aopexample.aspects;
 
 import org.aspectj.lang.annotation.Pointcut;
 
+
 public class CommonPointcutConfig {
 
     @Pointcut("execution(* com.joseph.springAOP.aopexample.*.*.*(..))")
