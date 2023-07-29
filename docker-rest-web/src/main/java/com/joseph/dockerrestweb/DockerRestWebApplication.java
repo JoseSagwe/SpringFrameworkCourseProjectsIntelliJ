@@ -1,13 +1,13 @@
-package com.joseph.Learnmaven;
+package com.joseph.dockerrestweb;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class LearnMavenApplication {
+public class DockerRestWebApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(LearnMavenApplication.class, args);
+		SpringApplication.run(DockerRestWebApplication.class, args);
 	}
 
 }
