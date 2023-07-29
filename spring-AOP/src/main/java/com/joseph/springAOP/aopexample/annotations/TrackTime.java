@@ -1,4 +1,4 @@
-package com.joseph.springAOP.annotations;
+package com.joseph.springAOP.aopexample.annotations;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
