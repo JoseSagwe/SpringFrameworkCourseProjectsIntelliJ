@@ -7,7 +7,12 @@ public class FP01Functional {
 
     }
 
-    private static void ListOfNumbersFunctional(List<Integer> numbers) {
+    private static  void print(int number){
+        System.out.println(number);
+    }
 
+    private static void ListOfNumbersFunctional(List<Integer> numbers) {
+        numbers.stream()
+                .forEach(FP01Functional::print);
     }
 }
