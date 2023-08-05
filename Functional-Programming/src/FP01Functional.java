@@ -8,6 +8,7 @@ public class FP01Functional {
 
     }
 
+
 //    private static  void print(int number){
 //        System.out.println(number);
 //    }
@@ -21,6 +22,7 @@ public class FP01Functional {
                 .forEach(System.out::println);   //Method Reference
     }
 
+    
 
                     //Filter - Only allow Even Numbers
 //    private static void EvenNumbersFunctional(List<Integer> numbers) {
