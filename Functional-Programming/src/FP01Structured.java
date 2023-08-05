@@ -8,11 +8,13 @@ public class FP01Structured {
 
     }
 
+
     private static void ListOfNumbersStructured(List<Integer> numbers) {
         for(int number:numbers){
             System.out.println(number);
         }
     }
+
 
     private static void EvenListOfNumbersStructured(List<Integer> numbers) {
         for(int number:numbers) {

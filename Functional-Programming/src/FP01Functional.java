@@ -22,15 +22,12 @@ public class FP01Functional {
                 .forEach(System.out::println);   //Method Reference
     }
 
-    
-
                     //Filter - Only allow Even Numbers
 //    private static void EvenNumbersFunctional(List<Integer> numbers) {
 //        numbers.stream()
 //                .filter(FP01Functional::isEven)
 //                .forEach(System.out::println);   //Method Reference
 //    }
-
 
                 //LAMBDA EXPRESSION
     private static void EvenNumbersFunctional(List<Integer> numbers) {
