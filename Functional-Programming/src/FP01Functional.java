@@ -4,7 +4,7 @@ public class FP01Functional {
     public static void main(String[] args) {
 
 //        ListOfNumbersFunctional(List.of(122,159,687,672,540,988));
-        EvenNumbersFunctional(List.of(122,159,687,672,541,988));
+        EvenNumbersFunctional(List.of(122,159,687,672,541,98));
 
     }
 
@@ -16,6 +16,7 @@ public class FP01Functional {
 //    private static boolean isEven(int number){
 //        return number%2 == 0;
 //    }
+
     private static void ListOfNumbersFunctional(List<Integer> numbers) {
         numbers.stream()
 //              .forEach(FP01Functional::print);
