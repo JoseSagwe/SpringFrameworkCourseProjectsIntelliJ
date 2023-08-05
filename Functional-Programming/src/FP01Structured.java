@@ -7,14 +7,11 @@ public class FP01Structured {
         EvenListOfNumbersStructured(List.of(23,152,674,62,44,98));
 
     }
-
     private static void ListOfNumbersStructured(List<Integer> numbers) {
         for(int number:numbers){
             System.out.println(number);
         }
     }
-
-
 
     private static void EvenListOfNumbersStructured(List<Integer> numbers) {
         for(int number:numbers) {
