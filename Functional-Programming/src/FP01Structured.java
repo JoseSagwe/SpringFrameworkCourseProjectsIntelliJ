@@ -14,6 +14,8 @@ public class FP01Structured {
         }
     }
 
+
+
     private static void EvenListOfNumbersStructured(List<Integer> numbers) {
         for(int number:numbers) {
             if (number % 2 == 0) {

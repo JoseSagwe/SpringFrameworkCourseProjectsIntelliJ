@@ -8,7 +8,6 @@ public class FP01Functional {
 
     }
 
-
 //    private static  void print(int number){
 //        System.out.println(number);
 //    }
@@ -29,6 +28,7 @@ public class FP01Functional {
 //                .filter(FP01Functional::isEven)
 //                .forEach(System.out::println);   //Method Reference
 //    }
+
 
                 //LAMBDA EXPRESSION
     private static void EvenNumbersFunctional(List<Integer> numbers) {
