@@ -3,7 +3,6 @@ import java.util.List;
 public class FP01Functional {
     public static void main(String[] args) {
 
-
 //        ListOfNumbersFunctional(List.of(122,159,687,672,540,988));
 //        EvenNumbersFunctional(List.of(122,159,687,672,541,98));
           OddNumbersFunctional(List.of(122,159,687,672,541,98));
@@ -31,6 +30,12 @@ public class FP01Functional {
 
                 //LAMBDA EXPRESSION
     private static void EvenNumbersFunctional(List<Integer> numbers) {
+        numbers.stream()
+                .filter(number -> number%2 == 0)
+                .forEach(System.out::println);   //Method Reference
+    }
+
+    private static void SquaresOfEvenNumbersFunctional(List<Integer> numbers) {
         numbers.stream()
                 .filter(number -> number%2 == 0)
                 .forEach(System.out::println);   //Method Reference

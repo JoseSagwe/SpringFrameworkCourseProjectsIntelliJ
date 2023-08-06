@@ -9,7 +9,7 @@ public class FP02Functional {
 //        courses.stream()
 //                .forEach(System.out::println);
 
-        
+
         //print courses with spring
 //        courses.stream()
 //                .filter(course -> course.contains("Spring"))
