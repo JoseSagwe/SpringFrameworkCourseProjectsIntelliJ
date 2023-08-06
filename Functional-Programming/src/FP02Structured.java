@@ -13,6 +13,7 @@ public class FP02Structured {
         }
     }
 
+
     public static void courseContainingSpring(List<String> courses){
         for (String course: courses){
            if (course.equals("Spring Boot")){
