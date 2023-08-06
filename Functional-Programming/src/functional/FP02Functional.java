@@ -1,3 +1,5 @@
+package functional;
+
 import java.util.List;
 
 public class FP02Functional {
@@ -16,8 +18,15 @@ public class FP02Functional {
 //                .forEach(System.out::println);
 
         //Courses with at least  4 letters
+//        courses.stream()
+//                .filter(course -> course.length()>=21)
+//                .forEach(System.out::println);
+
+        //Print number of characters
         courses.stream()
-                .filter(course -> course.length()>=21)
+//                .map(String::length)
+                //OR
+                .map(course -> course + " " + course.length())
                 .forEach(System.out::println);
     }
 }

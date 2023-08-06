@@ -1,3 +1,5 @@
+package functional;
+
 import java.util.List;
 
 public class FP01Functional {
@@ -7,7 +9,8 @@ public class FP01Functional {
 //      ListOfNumbersFunctional(numbers);
 //      EvenNumbersFunctional(numbers);
 //      OddNumbersFunctional(numbers);
-        SquaresOfEvenNumbersFunctional(numbers);
+//        SquaresOfEvenNumbersFunctional(numbers);
+        cubesOfOddNumbersFunctional(numbers);
 
 
     }
@@ -21,14 +24,14 @@ public class FP01Functional {
 //    }
     private static void ListOfNumbersFunctional(List<Integer> numbers) {
         numbers.stream()
-//              .forEach(FP01Functional::print);
+//              .forEach(functional.FP01Functional::print);
                 .forEach(System.out::println);   //Method Reference
     }
 
                     //Filter - Only allow Even Numbers
 //    private static void EvenNumbersFunctional(List<Integer> numbers) {
 //        numbers.stream()
-//                .filter(FP01Functional::isEven)
+//                .filter(functional.FP01Functional::isEven)
 //                .forEach(System.out::println);   //Method Reference
 //    }
 
@@ -39,15 +42,27 @@ public class FP01Functional {
                 .forEach(System.out::println);   //Method Reference
     }
 
+    //MAPPING
     private static void SquaresOfEvenNumbersFunctional(List<Integer> numbers) {
         numbers.stream()
                 .filter(number -> number%2 == 0)
+                //mapping
+                .map(number -> number * number)  //square
                 .forEach(System.out::println);   //Method Reference
     }
 
     private static void OddNumbersFunctional(List<Integer> numbers) {
         numbers.stream()
                 .filter(number -> number%2 == 1)  //Or != 1
+                .forEach(System.out::println);   //Method Reference
+    }
+
+    //MAPPING
+    private static void cubesOfOddNumbersFunctional(List<Integer> numbers) {
+        numbers.stream()
+                .filter(number -> number%2 == 1)  //Or != 1
+                //mapping
+                .map(number -> number * number * number)  //cubes
                 .forEach(System.out::println);   //Method Reference
     }
 }

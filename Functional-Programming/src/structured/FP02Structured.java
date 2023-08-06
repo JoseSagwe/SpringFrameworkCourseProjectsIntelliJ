@@ -1,3 +1,5 @@
+package structured;
+
 import java.util.List;
 
 public class FP02Structured {
