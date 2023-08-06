@@ -4,8 +4,8 @@ public class FP01Functional {
     public static void main(String[] args) {
 
 //        ListOfNumbersFunctional(List.of(122,159,687,672,540,988));
-        EvenNumbersFunctional(List.of(122,159,687,672,541,98));
-
+//        EvenNumbersFunctional(List.of(122,159,687,672,541,98));
+          OddNumbersFunctional(List.of(122,159,687,672,541,98));
     }
 
 //    private static  void print(int number){
@@ -32,6 +32,12 @@ public class FP01Functional {
     private static void EvenNumbersFunctional(List<Integer> numbers) {
         numbers.stream()
                 .filter(number -> number%2 == 0)
+                .forEach(System.out::println);   //Method Reference
+    }
+
+    private static void OddNumbersFunctional(List<Integer> numbers) {
+        numbers.stream()
+                .filter(number -> number%2 == 1)  //Or != 1
                 .forEach(System.out::println);   //Method Reference
     }
 }

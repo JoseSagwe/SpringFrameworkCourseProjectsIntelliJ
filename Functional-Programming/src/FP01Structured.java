@@ -4,7 +4,8 @@ public class FP01Structured {
     public static void main(String[] args) {
 
 //        ListOfNumbersStructured(List.of(12,15,67,62,54,98));
-        EvenListOfNumbersStructured(List.of(23,152,674,62,44,98));
+//        EvenListOfNumbersStructured(List.of(23,152,674,62,44,98));
+        OddListOfNumbersStructured(List.of(23,152,674,62,44,98));
 
     }
     private static void ListOfNumbersStructured(List<Integer> numbers) {
@@ -16,6 +17,14 @@ public class FP01Structured {
     private static void EvenListOfNumbersStructured(List<Integer> numbers) {
         for(int number:numbers) {
             if (number % 2 == 0) {
+                System.out.println(number);
+            }
+        }
+    }
+
+    private static void OddListOfNumbersStructured(List<Integer> numbers) {
+        for(int number:numbers) {
+            if (number % 2 == 1) {
                 System.out.println(number);
             }
         }
