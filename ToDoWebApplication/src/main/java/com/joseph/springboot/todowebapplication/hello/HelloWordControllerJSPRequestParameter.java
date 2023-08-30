@@ -5,6 +5,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+
+
 @Controller// by using this it will handle the view @ResponseBody
 //@Controller using this you must use the @ResponseBody to handle the view
 public class HelloWordControllerJSPRequestParameter {

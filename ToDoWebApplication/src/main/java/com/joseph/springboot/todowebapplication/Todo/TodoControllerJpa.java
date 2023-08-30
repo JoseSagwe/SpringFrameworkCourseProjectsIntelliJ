@@ -67,9 +67,6 @@ public class TodoControllerJpa {
 
     }
 
-
-
-
     @RequestMapping(value="update-todo", method = RequestMethod.GET)
     public String showUpdateTodoPage(@RequestParam int id, ModelMap model) {
         Todo todo = todoRepository.findById(id).get();

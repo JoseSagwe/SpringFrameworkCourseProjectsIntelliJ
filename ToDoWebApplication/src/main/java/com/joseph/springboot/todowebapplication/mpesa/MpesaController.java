@@ -10,10 +10,6 @@ public class MpesaController {
     public String welcome(){
         return "welcomeUser";
     }
-
-
-
-    
     @RequestMapping("/sendMoney")
     public String sendMoney(){
         return "sendMoney";
