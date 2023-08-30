@@ -11,6 +11,9 @@ public class MpesaController {
         return "welcomeUser";
     }
 
+
+
+    
     @RequestMapping("/sendMoney")
     public String sendMoney(){
         return "sendMoney";
