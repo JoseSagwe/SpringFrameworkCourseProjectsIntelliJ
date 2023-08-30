@@ -92,5 +92,4 @@ public class TodoControllerJpa {
                 SecurityContextHolder.getContext().getAuthentication();
         return authentication.getName();
     }
-
 }
